@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type=“text/css” href = “songs.css” ?>
+
+<song_list>
+    <heading>FAMOUS SONG LISTS</heading>
+    <song>
+        <title>TITLE: Single Ladies (Put a Ring on It)</title>
+        <artist>ARTIST: Beyonce</artist>
+        <genre>GENRE: Hip Hop</genre>
+        <year>YEAR RELEASED: 2008</year>
+    </song>
+
+    <song>
+        <title>TITLE: Umbrella</title>
+        <artist>ARTIST: Rihanna</artist>
+        <genre>GENRE: Hip Hop</genre>
+        <year>YEAR RELEASED: 2008</year>
+    </song>
+    
+    <song>
+        <title>TITLE:Shake it Off</title>
+        <artist>ARTIST: Taylor Swift</artist>
+        <genre>GENRE: Hip Hop</genre>
+        <year>YEAR RELEASED: 2014</year>
+    </song>
+
+    <song>
+        <title>TITLE: We Will Rock You</title>
+        <artist>ARTIST: Queen</artist>
+        <genre>GENRE: Rock</genre>
+        <year>YEAR RELEASED: 1977</year>
+    </song>
+
+    <song>
+        <title>TITLE:Bohemian Rhapsody</title>
+        <artist>ARTIST: Queen</artist>
+        <genre>GENRE: Rock</genre>
+        <year>YEAR RELEASED: 1975</year>
+    </song>
+
+    <song>
+        <title>TITLE: We Are the Champions</title>
+        <artist>ARTIST: Queen</artist>
+        <genre>GENRE: Rock</genre>
+        <year>YEAR RELEASED: 1977</year>
+    </song>
+
+    <song>
+        <title>TITLE: Somebody To Love</title>
+        <artist>ARTIST: Queen</artist>
+        <genre>GENRE: Rock</genre>
+        <year>YEAR RELEASED: 1976</year>
+    </song>
+
+    <song>
+        <title>TITLE: So What</title>
+        <artist>ARTIST: Miles Davis</artist>
+        <genre>GENRE: Jazz</genre>
+        <year>YEAR RELEASED: 1959</year>
+    </song>
+
+    <song>
+        <title>TITLE: Mood Indigo</title>
+        <artist>ARTIST: Miles Davis</artist>
+        <genre>GENRE: Jazz</genre>
+        <year>YEAR RELEASED: 1961</year>
+    </song>
+
+    <song>
+        <title>TITLE: A Night In Tunisia</title>
+        <artist>ARTIST: Dizzy Gillespie</artist>
+        <genre>GENRE: Jazz</genre>
+        <year>YEAR RELEASED: 1942</year>
+    </song>
+
+</song_list>

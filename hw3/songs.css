@@ -1,0 +1,19 @@
+song_list {
+    color: #fff;
+    background-color: #222020;
+    width: 100%;
+}
+
+heading {
+    font-size: 30px;
+    display: block;
+}
+
+title {
+    font-size: 20px;
+    display: block;
+}
+
+artist, genre, year {
+    display: block;
+}
