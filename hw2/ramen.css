@@ -1,0 +1,64 @@
+h1 {
+    text-align: center;
+}
+
+body {
+    background-image: url(page-background.jpeg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.nav li {
+    display: inline-block;
+    font-size: 25px;
+    padding: 45px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.nav {
+    position: relative;
+    box-sizing: border-box;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #000000;
+}
+
+.nav li:hover {
+    border: 1px solid #333; 
+    color: #fff; 
+    background-color: #d82f11
+}
+
+.nav li a {
+    text-decoration: none;
+    text-align: center; 
+    color: inherit
+}
+
+.content {
+    box-sizing: border-box;
+    border: 2px solid rgb(233, 113, 16);
+    text-align: justify;
+    font-size: 20px;
+    margin: 0px 100px 100px;
+} 
+
+#summary {
+    text-align: center;
+    font-size: 25px;
+    margin: 100px 100px 0px;
+}
+
+.footer {
+    text-align: center;
+    font-size: 10px;
+    position: fixed;
+    bottom: 0px;
+    width: 99%;
+    box-sizing: border-box;
+    background-color: rgb(47, 142, 219);
+    color: #fff;
+    border: 1px solid #000000;
+}

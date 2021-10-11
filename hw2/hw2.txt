@@ -1,0 +1,18 @@
+website:
+    https://takahashy.github.io/comp20/
+
+Design Document:
+1. Name of the business is Ramen Shop.
+
+2. Ramen shop provides ramen to customers. Their mission is to spread more of 
+   Japanese ramen culture in the medford area. Additionally, college students 
+   may get tired of eating dorm foods and that is where they help out by 
+   providing authentic japanese ramen. 
+
+3. The target is mainly Tufts college students. The location is right behind
+   Tufts Carmichael Hall so Tufts students have easy access to Ramen Shop.
+
+4. People have access to the menu online and having a general description of the
+   restaurant online will attract more customers than one without it. 
+
+5. 
