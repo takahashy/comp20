@@ -26,15 +26,14 @@
         hotdog = parseInt(prompt("How many hotdogs would you like?"));
         fries  = parseInt(prompt("How many fries would you like?"));
         soda   = parseInt(prompt("How many sodas would you like?"));
-
-        subtotal = totalPrice(hotdog, fries, soda);
-        var total;
         
         document.write("<p id='joe'>Hotdogs ordered: " + hotdog + "</p>");
         document.write("<p id='joe'>Fries ordered: " + fries + "</p>");
         document.write("<p id='joe'>Sodas ordered: " + soda + "</p>");
         document.write("<p id='joe'>Your subtotal is: $" + subtotal + "</p>");
         
+        subtotal = totalPrice(hotdog, fries, soda);
+        var total;
         if (subtotal >= 20) {
             document.write("<p id='joe'>10% Discount is: applicable </p>");
             total = 1.0625 * 0.9 * subtotal; 
