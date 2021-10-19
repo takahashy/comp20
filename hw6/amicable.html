@@ -1,0 +1,93 @@
+<!-- HW6 
+NOTES FOR MYSELF:
+    . onclick can take in multiple functions by adding ; in between each function
+    . input can be numbers, texts, submit, etc.
+    . array has useful built in functions
+        - array.length: gets the size of the array
+        - array.join('TEXT'): prints out all the elements with TEXT in between
+-->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Amicable Numbers</title>
+    <style type="text/css">
+        form {
+            font-size: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: rgb(238, 117, 117);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Amicable Numbers</h1>
+
+    <p>Enter two numbers to test whether they are amicable!</p>
+    <form name="numbers" onsubmit="return false">
+        <label for="num1">Number 1:</label>
+        <input type="number" name="num1" id="num1"> <br/>
+        <label for="num2">Number 2:</label>
+        <input type="number" name="num2" id="num2"> <br/><br/>
+        <button onclick="amicable(document.getElementById('num1').value, document.getElementById('num2').value); 
+                         printFactors(document.getElementById('num1').value);
+                         printFactors(document.getElementById('num2').value);">amicable</button>
+
+        <br/>
+        <div id="amic"></div>
+
+    </form>
+
+    <script language="javascript">
+        /* determines the factors of a number and stores them into an array */
+        function factorize(num)
+        {
+            factors = [];
+            for (i = 1; i < num; i++) {
+                if (num % i == 0) {
+                    factors.push(i);
+                }
+            }
+            return factors;
+        }
+
+        /* prints the factors of a number onto a pop up */
+        function printFactors(num) 
+        {
+            var factors = factorize(num);
+            if (factors.length == 0) {
+                alert("No natural number factors");
+            } else {
+                alert("The factors exluding itself are: " + factors.join(', '))
+            }
+        }
+
+        /* returns the sum of the elements of the array */
+        function sum(array)
+        {
+            var sum = 0;
+            for (i = 0; i < array.length; i++) {
+                sum += array[i];
+            }
+            return sum;
+        }
+
+        /* determines whether the two numbers passed in as parameters are amicable or not 
+         * and prints the statements
+         */
+        function amicable(num1, num2) 
+        {
+            var factors1 = factorize(num1);
+            var factors2 = factorize(num2);
+            if ((sum(factors1) == num2) && (sum(factors2) == num1)) {
+                document.getElementById("amic").innerHTML = "The numbers " + num1 + " and " + num2 + " are amicable";
+            } else {
+                document.getElementById("amic").innerHTML = "The numbers " + num1 + " and " + num2 + " are NOT amicable";
+            }
+        }
+    </script>
+</body>
+</html>
