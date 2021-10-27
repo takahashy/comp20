@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Jade Delight</title>
+</head>
+
+<body>
+<script language="javascript">
+
+function validate()
+{
+	var valid = true;
+	var time, order_type;
+
+	if (!validateName()) {
+		valid = false;
+	}
+	
+	if (!validatePhone()) {
+		valid = false;
+	}
+
+	if (pickup()) {
+		time = 15;
+        order_type = "pickup";
+	} else {
+		if (!validateAddress("street", "err_street")) {
+			valid = false;
+		}
+        if (!validateAddress("city", "err_city")) {
+			valid = false;
+		} 
+        time = 30;
+        order_type = "delivery";
+    }
+
+    var total = document.getElementById("total").value;
+    if (valid) {
+        printOrder(time, order_type, total);
+	}
+
+	return valid;
+}
+
+function letters(inputtxt)
+{
+	all_letters = /^[A-Za-z]+$/;
+    return all_letters.test(inputtxt);
+}
+
+function validateName()
+{
+	var name = document.getElementsByName("lname")[0];
+	var message_name = document.getElementById("err_name");
+	message_name.innerHTML = "";
+
+	if (name.value == "") {
+		message_name.innerHTML = "Last Name is required";
+		name.focus();
+		return false;
+    } 
+	
+	if (!letters(name.value)) {
+		message_name.innerHTML = "Name must be in letters";
+		name.focus();
+		return false
+	} 
+
+	return true;
+}
+
+function numbers(inputtxt)
+{
+	tel = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
+	return tel.test(inputtxt);
+}
+
+function validatePhone()
+{
+	var phone = document.getElementsByName("phone")[0];
+	var message_phone = document.getElementById("err_phone");
+	message_phone.innerHTML = "";
+
+	if (phone.value == "") {
+		message_phone.innerHTML = "Phone number is required";
+		phone.focus();
+		phone.select();
+		return false;
+	} 
+
+	if (!numbers(phone.value)) {
+		message_phone.innerHTML = "Invalid phone number";
+		phone.focus();
+		phone.select();
+		return false;
+	} 
+
+	return true;
+}
+
+function validateAddress(id, err) 
+{
+	var address = document.getElementsByName(id)[0];
+	var message_address = document.getElementById(err);
+	message_address.innerHTML = "";
+
+	if (address.value == "") {
+		message_address.innerHTML = "Address is required";
+		address.focus();
+		return false;
+    } 
+
+	return true;
+}
+
+function pickup()
+{
+	return document.getElementsByName("p_or_d")[0].checked;
+}
+
+function starAddress()
+{
+	document.getElementById("street").style.display = "block";
+	document.getElementById("city").style.display = "block";
+}
+
+function deStarAddress()
+{
+	document.getElementById("street").style.display = "none";
+	document.getElementById("city").style.display = "none";
+}
+
+function ETA(time) {
+    d = new Date();
+    return new Date(d.getTime() + time*60000);
+}
+
+function printOrder(eta, order_type, totalPrice)
+{
+	var time = ETA(eta);
+	var w = window.open("")
+    w.document.write("<h1>Order Details</h1>Thank you for ordering!<br/><br/>" + listOrders() + "<br/>The estimated " + order_type + " time is " + time + ".<br/>The total amount is $" + totalPrice);
+}
+
+function listOrders()
+{
+	var s = "";
+
+	s += "<table><tr><th>Items</th><th>Quantity</th></tr>";
+
+	for (i = 0; i < menuItems.length; i++) {
+		items = document.getElementsByName("quan" + i)[0].value;
+		if (items != 0) {
+			s += "<tr><td>" + menuItems[i].name + "</td>";
+			s += "<td>" + items + "</td></tr>";
+		} else {
+			s += "";
+		}
+	}
+	s += "</table>";
+
+	return s;
+}
+
+function calculateCost() 
+{
+	var items;
+	each_cost = 0;
+	subtotal  = 0;
+	tax       = 0;
+	total     = 0;
+
+	for (i = 0; i < menuItems.length; i++) {
+		items = document.getElementsByName("quan" + i)[0].value;
+		items = parseInt(items);
+		each_cost = items * menuItems[i].cost;
+		document.getElementsByName("cost")[i].value = each_cost.toFixed(2);
+
+		subtotal += parseFloat(each_cost);
+	}
+
+	tax = subtotal * 0.0625;
+	total = subtotal + tax;
+	document.getElementById("subtotal").value = subtotal.toFixed(2);
+	document.getElementById("tax").value = tax.toFixed(2);
+	document.getElementById("total").value = total.toFixed(2);
+}
+
+
+function MenuItem(name, cost)
+{
+	this.name = name;
+	this.cost=cost;
+}
+
+menuItems = new Array(
+	new MenuItem("Chicken Chop Suey", 4.5),
+	new MenuItem("Sweet and Sour Pork", 6.25),
+	new MenuItem("Shrimp Lo Mein", 5.25),
+	new MenuItem("Moo Shi Chicken", 6.5),
+	new MenuItem("Fried Rice", 2.35)
+);
+
+function makeSelect(name, minRange, maxRange)
+{
+	var t= "";
+	t = "<select name='" + name + "' size='1' onchange=calculateCost()>";
+	for (j=minRange; j<=maxRange; j++)
+	   t += "<option>" + j + "</option>";
+	t+= "</select>"; 
+	return t;
+}
+</script>
+
+<!------------------------------ BODY ----------------------------------------->
+<h1>Jade Delight</h1>
+<form onsubmit="return validate()">
+
+<!------ INPUT INFORMATION ------->
+<p>First Name: <input type="text"  name='fname' /></p>
+<p>Last Name*:  <input type="text"  name='lname' /><span id="err_name"></span></p>
+<p id="street" style="display:none">Street*: <input type="text" name='street' /><span id="err_street"></span></p>
+<p id="city" style="display:none">City *: <input type="text" name='city' /><span id="err_city"></span></p>
+<p>Phone*: <input type="text"  name='phone' /><span id="err_phone"></span></p>
+	<div id="err_phone"></div>
+<p> 
+	<input type="radio"  name='p_or_d' value = 'pickup' checked="checked" onchange="deStarAddress()"/>Pickup  
+	<input type="radio"  name='p_or_d' value = 'delivery' onchange="starAddress()"/>Delivery
+</p>
+
+<!------ TABLE INFORMATION ------>
+<table border="0" cellpadding="3">
+  <tr>
+    <th>Select Item</th>
+    <th>Item Name</th>
+    <th>Cost Each</th>
+    <th>Total Cost</th>
+  </tr>
+<script language="javascript">
+
+  var s = "";
+  for (i=0; i< menuItems.length; i++)
+  {
+	  s += "<tr><td>";
+	  s += makeSelect("quan" + i, 0, 10);
+	  s += "</td><td>" + menuItems[i].name + "</td>";
+	  s += "<td> $ " + menuItems[i].cost.toFixed(2) + "</td>";
+	  s += "<td>$<input type='text' name='cost'/></td></tr>";
+  }
+  document.writeln(s);
+</script>
+</table>
+
+<!------ CALCULATED COSTS TOTALS ------>
+<p>Subtotal: 
+   $<input type="text"  name='subtotal' id="subtotal" />
+</p>
+<p>Mass tax 6.25%:
+  $ <input type="text"  name='tax' id="tax" />
+</p>
+<p>Total: $ <input type="text"  name='total' id="total" />
+</p>
+
+<input type="submit" value="Submit Order" />
+
+</form>
+</body>
+</html>
