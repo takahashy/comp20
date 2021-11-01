@@ -1,0 +1,71 @@
+[
+    {
+        "TITLE": "Single Ladies (Put a Ring on It)",
+        "ARTIST": "Beyonce",
+        "GENRE": ["Hip Hop", "Pop"],
+        "YEAR RELEASED": 2008
+    },
+
+    {
+        "TITLE": "Umbrella",
+        "ARTIST": "Rihanna",
+        "GENRE": ["Hip Hop", "Pop"],
+        "YEAR RELEASED": 2008
+    },
+
+    {
+        "TITLE": "Shake it Off",
+        "ARTIST": "Taylor Swift",
+        "GENRE": ["Hip Hop", "Pop"],
+        "YEAR RELEASED": 2014
+    },
+
+    {
+        "TITLE": "We Will Rock You",
+        "ARTIST": "Queen",
+        "GENRE": ["Rock", "Progressive Pop"],
+        "YEAR RELEASED": 1977
+    },
+
+    {
+        "TITLE": "Bohemian Rhapsody",
+        "ARTIST": "Queen",
+        "GENRE": ["Rock", "Progressive Pop"],
+        "YEAR RELEASED": 1975
+    },
+
+    {
+        "TITLE": "We Are the Champions",
+        "ARTIST": "Queen",
+        "GENRE": ["Rock", "Progressive Pop"],
+        "YEAR RELEASED": 1977
+    },
+
+    {
+        "TITLE": "Somebody To Love",
+        "ARTIST": "Queen",
+        "GENRE": ["Rock", "Progressive Pop"],
+        "YEAR RELEASED": 1976
+    },
+
+    {
+        "TITLE": "So What",
+        "ARTIST": "Miles Davis",
+        "GENRE": ["Jazz", "Blues"],
+        "YEAR RELEASED": 1959
+    },
+
+    {
+        "TITLE": "Mood Indigo",
+        "ARTIST": "Miles Davis",
+        "GENRE": ["Jazz", "Blues"],
+        "YEAR RELEASED": 1961
+    },
+
+    {
+        "TITLE": "A Night In Tunisia",
+        "ARTIST": "Dizzy Gillespie",
+        "GENRE": ["Jazz", "Blues"],
+        "YEAR RELEASED": 1942
+    }
+]
