@@ -1,38 +1,5 @@
 <!DOCTYPE html>
 
-<html>
-
-<head>
-    <title> Song List </title>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
-	
-</head>
-
-<body>
-    <script language="javascript">
-     	$.get( "https://takahashy.github.io/comp20/hw9/songs.json", 
-            function(songs) {
-
-                // var songList = JSON.stringify(songs);
-                // document.write(songList +"<br/><br/>");
-
-                listing = "<ul>";
-                songs.forEach(function(songs) { 
-                    listing += "<li>" 
-                            + songs.TITLE 
-                            + "<br/>Written by: " + songs.ARTIST 
-                            + "<br/>Genres are: " + songs.GENRE
-                            + "<br/>Year Released: " + songs.YEAR
-                            + "</li>";
-                }) 
-                listing += "</ul>";
-                document.write (listing);  /**/
-            }
-        )     
-    </script>
-</body>
-</html><!DOCTYPE html>
-
 <head>
     <title> Song List </title>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
