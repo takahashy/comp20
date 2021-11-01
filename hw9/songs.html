@@ -7,7 +7,8 @@
 </head>
 
 <body>
-    <div id="print">hello</div>
+    <button id = "Genre">Genre</button>
+    <div id="print"></div>
         
     </script>
 
@@ -16,56 +17,83 @@
             $.get( "https://takahashy.github.io/comp20/hw9/songs.json", 
                 function(data) { 
                     var songs = [];
-                    
+                            
                     for (i = 0; i < data.length; i++) {
                         songs.push(data[i]);
                     }
+                  
 
-                    // for (i = 0; i < songs.length; i++) {
-                    //     $("#print").html(printSongs(data[i]));
-                    // }
+                    $("#Genre").html(createSelect(allGenres(data)));
+                    $("#print").append(printSongs(data));
+                    // $("#print").append("HEllo");
                 }
             )     
         })
 
         function printSongs(data) {
             var songlist = "<ul>";
+            data.forEach(function(data) { 
             songlist += "<li>" 
-                      + data.TITLE + "<br/>" + "<br/>"
-                      + "Artist: " + data.ARTIST
-                      + "Genres: " + getGenre(data) + "<br/>"
+                      + data.TITLE + "<br/>"
+                      + "Artist: " + data.ARTIST + "<br/>"
+                      + "Genres: " + printGenre(data) + "<br/>"
                       + "Year Released: " + data.YEAR
-                      + "</li>";
+                      + "</li><br/>";
+            }) 
+            songlist += "</ul>";
 
             return songlist;
         }
 
-        function getGenre(songs) 
+        function printGenre(songs) 
         {
-                var genre = "";
-                for (i = 0; i < songs.GENRE.length; i++) {
-                    if (i != songs.GENRE.length - 1) {
-                        genre += songs.GENRE[i] + ", ";
-                    } else {
-                        genre += songs.GENRE[i];
+            var genre = "";
+            for (i = 0; i < songs.GENRE.length; i++) {
+                if (i != songs.GENRE.length - 1) {
+                    genre += songs.GENRE[i] + ", ";
+                } else {
+                    genre += songs.GENRE[i];
+                }
+            }
+
+            return genre;
+        }
+
+        function createSelect(genres) {
+            selectHTML = "<select id='selections'>";
+            for (i = 0; i < genres.length; i++) {
+                selectHTML += "<option>" + genres[i] + "</option>";
+            }
+
+            selectHTML += "</select>";
+            return selectHTML;
+        }
+
+        function allGenres(songs) 
+        {
+            var genres = [];
+            for (i = 0; i < songs.length; i++) {
+                for (j = 0; j < songs[i].GENRE.length; j++) {
+                    if (checkGenre(genres, songs[i].GENRE[j])) {
+                        genres.push(songs[i].GENRE[j]);
                     }
                 }
+            } 
 
-                return genre;
+            return genres;
+        }
+
+        function checkGenre(genres, value)
+        {
+            for (i = 0; i < genres.length; i++) {
+                if (genres[i] != value) {
+                    return true;
+                } 
             }
+
+            return false;
+        }
      	
     </script>
-    
-    <!-- <form>
-        Choose a Genre: 
-        <select id = "song_genre">
-            <option value = "Hip Hop">Hip Hop</option>
-            <option value = "Pop">Pop</option>
-            <option value = "Rock">Rock</option>
-            <option value = "Progressive Pop">Progressive Pop</option>
-            <option value = "Jazz">Jazz</option>
-            <option value = "Blues">Blues</option>
-        </select>
-    </form> -->
 </body>
 </html>
