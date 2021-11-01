@@ -31,4 +31,64 @@
         )     
     </script>
 </body>
+</html><!DOCTYPE html>
+
+<head>
+    <title> Song List </title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+	
+</head>
+
+<body>
+    <script language="javascript">
+        $(document).ready(function () {
+            $.get( "https://takahashy.github.io/comp20/hw9/songs.json", 
+                function(songs) {
+
+                    // var songList = JSON.stringify(songs);
+                    // document.write(songList +"<br/><br/>");
+                    listing = "<ul>";
+                    songs.forEach(function(songs) { 
+                        listing += "<li>" 
+                                + songs.TITLE 
+                                + "<br/>Written by: " + songs.ARTIST 
+                                + "<br/>Genres are: " + getGenre(songs)                            
+                                + "<br/>Year Released: " + songs.YEAR
+                                + "</li> <br/>";
+                    }) 
+                    listing += "</ul>";
+                    document.write(listing);
+                }
+            )     
+        })
+
+        function getGenre(songs) {
+                var genre = "";
+                for (i = 0; i < songs.GENRE.length; i++) {
+                    if (i != songs.GENRE.length - 1) {
+                        genre += songs.GENRE[i] + ", ";
+                    } else {
+                        genre += songs.GENRE[i];
+                    }
+                }
+
+                return genre;
+            }
+     	
+    </script>
+
+    <h1>hello world</h1>
+    
+    <!-- <form>
+        Choose a Genre: 
+        <select id = "song_genre">
+            <option value = "Hip Hop">Hip Hop</option>
+            <option value = "Pop">Pop</option>
+            <option value = "Rock">Rock</option>
+            <option value = "Progressive Pop">Progressive Pop</option>
+            <option value = "Jazz">Jazz</option>
+            <option value = "Blues">Blues</option>
+        </select>
+    </form> -->
+</body>
 </html>
