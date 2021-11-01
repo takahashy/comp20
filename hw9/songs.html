@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<head>
+    <title> Song List </title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+	
+</head>
+
+<body>
+    <div id="allselections"></div>
+    <button id="Genre" >Search by Genre</button>
+
+    <script language="javascript">
+        for (index = 0; index < 10; index++) {
+            document.write("<p id='print" + index + "'></p>");
+        }
+
+        $(document).ready(function () {
+            $.get( "https://takahashy.github.io/comp20/hw9/songs.json", 
+                function(data) {                
+                    $("#allselections").html(createSelect(allGenres(data)));
+                    
+                    for (index = 0; index < data.length; index++) {
+                        $("#print" + index).html(printSongs(data[index]));
+                    }
+
+                    $("#Genre").click(function() {
+                        searchGenre(data, $("#selections").val());
+                    })
+                }
+            )     
+        })
+
+        function printSongs(data) {
+            var songlist = "<ul>"; 
+            songlist += "<li>" 
+                      + data.TITLE + "<br/>"
+                      + "Artist: " + data.ARTIST + "<br/>"
+                      + "Genres: " + printGenre(data) + "<br/>"
+                      + "Year Released: " + data.YEAR
+                      + "</li><br/>";
+                      + "</ul>";
+
+            return songlist;
+        }
+
+        function printGenre(songs) 
+        {
+            var genre = "";
+            for (i = 0; i < songs.GENRE.length; i++) {
+                if (i != songs.GENRE.length - 1) {
+                    genre += songs.GENRE[i] + ", ";
+                } else {
+                    genre += songs.GENRE[i];
+                }
+            }
+
+            return genre;
+        }
+
+        function createSelect(genres) {
+            selectHTML = "<select id='selections'>";
+            for (i = 0; i < genres.length; i++) {
+                selectHTML += "<option>" + genres[i] + "</option>";
+            }
+
+            selectHTML += "</select>";
+            return selectHTML;
+        }
+
+        function allGenres(songs) 
+        {
+            var genres = [];
+            for (index = 0; index < songs.length; index++) {
+                for (j = 0; j < songs[index].GENRE.length; j++) {
+                    if (!checkGenre(genres, songs[index].GENRE[j])) {
+                        genres.push(songs[index].GENRE[j]);
+                    }   
+                }
+            }
+            genres.push("all");
+            return genres;
+        }
+
+        function checkGenre(genres, value) 
+        {
+            for (i = 0; i < genres.length; i++) {
+                if (value == genres[i]) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        
+        function searchGenre(songs, genre)
+        {
+            for (index = 0; index < songs.length; index++) {
+                $("#print" + index).show();
+                if (!checkGenre(songs[index].GENRE, genre)) {
+                    $("#print" + index).hide();
+                } 
+
+                if (genre == "all") {
+                    $("#print" + index).show();
+                }
+            }
+        }
+
+    </script>
+    
+</body>
+</html>
