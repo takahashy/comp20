@@ -22,7 +22,7 @@
                         songs.push(data[i]);
                     }
                   
-                    $("#print").html(createSelect(makeGenres(data)));
+                    $("#print").html(createSelect(allGenres(data)));
                     // $("#Genre").html(createSelect(allGenres(data)));
                     $("#print").append(printSongs(data));
                     // $("#print").append("HEllo");
@@ -69,58 +69,58 @@
             return selectHTML;
         }
 
-        // function allGenres(songs) 
-        // {
-        //     var genres = [];
-        //     for (i = 0; i < songs.length; i++) {
-        //         for (j = 0; j < songs[i].GENRE.length; j++) {
-        //             if (checkGenre(genres, songs[i].GENRE[j])) {
-        //                 genres.push(songs[i].GENRE[j]);
+        function allGenres(songs) 
+        {
+            var genres = [];
+            for (i = 0; i < songs.length; i++) {
+                for (j = 0; j < songs[i].GENRE.length; j++) {
+                    if (checkGenre(genres, songs[i].GENRE[j])) {
+                        genres.push(songs[i].GENRE[j]);
+                    }
+                }
+            } 
+
+            return genres;
+        }
+
+        function checkGenre(genres, value)
+        {
+            for (i = 0; i < genres.length; i++) {
+                if (genres[i] != value) {
+                    return true;
+                } 
+            }
+
+            return false;
+        }
+
+        // function inGenres(genres, elem) {
+        //         for (let index = 0; index < genres.length; index++) {
+        //             if (elem == genres[index]) {
+        //                 return true;
         //             }
         //         }
-        //     } 
 
-        //     return genres;
-        // }
-
-        // function checkGenre(genres, value)
-        // {
-        //     for (i = 0; i < genres.length; i++) {
-        //         if (genres[i] != value) {
-        //             return true;
-        //         } 
+        //         return false;
         //     }
 
-        //     return false;
-        // }
+        // function makeGenres(songs) {
+        //     var  genres  =  [ ] ;
+        //     for (let index = 0; index < songs.length; index++) {
+        //         currGenres = songs[index].GENRE;
 
-        function inGenres(genres, elem) {
-                for (let index = 0; index < genres.length; index++) {
-                    if (elem == genres[index]) {
-                        return true;
-                    }
-                }
-
-                return false;
-            }
-
-        function makeGenres(songs) {
-            var  genres  =  [ ] ;
-            for (let index = 0; index < songs.length; index++) {
-                currGenres = songs[index].GENRE;
-
-                for (let i = 0; i < currGenres.length; i++) {
-                    if (!inGenres(genres, currGenres[i])) {
-                        genres.push(currGenres[i]);
-                    }
+        //         for (let i = 0; i < currGenres.length; i++) {
+        //             if (!inGenres(genres, currGenres[i])) {
+        //                 genres.push(currGenres[i]);
+        //             }
                      
-                }
-            }
+        //         }
+        //     }
 
-                return genres;
-            }
+        //         return genres;
+        //     }
      	
     </script>
-
+    
 </body>
 </html>
