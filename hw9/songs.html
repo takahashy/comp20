@@ -22,10 +22,9 @@
                         songs.push(data[i]);
                     }
                   
-                    $("#print").html(createSelect(allGenres(data)));
+                    $("#print").html(createSelect(makeGenres(data)));
                     // $("#Genre").html(createSelect(allGenres(data)));
                     $("#print").append(printSongs(data));
-                    // $("#print").append("HEllo");
                 }
             )     
         })
@@ -69,35 +68,9 @@
             return selectHTML;
         }
 
-        // function allGenres(songs) 
-        // {
-        //     var genres = [];
-        //     for (i = 0; i < songs.length; i++) {
-        //         alert(song[0].GENRE[1]);
-        //         for (j = 0; j < songs[i].GENRE.length; j++) {
-        //             if (checkGenre(genres, songs[i].GENRE[j])) {
-        //                 genres.push(songs[i].GENRE[j]);
-        //             }
-        //         }
-        //     } 
-
-        //     return genres;
-        // }
-
-        // function checkGenre(genres, value)
-        // {
-        //     for (i = 0; i < genres.length; i++) {
-        //         if (genres[i] != value) {
-        //             return true;
-        //         } 
-        //     }
-
-        //     return false;
-        // }
-
-        function checkGenre(genres, elem) {
-                for (i = 0; i < genres.length; i++) {
-                    if (elem == genres[i]) {
+        function inGenres(genres, elem) {
+                for (let index = 0; index < genres.length; index++) {
+                    if (elem == genres[index]) {
                         return true;
                     }
                 }
@@ -105,19 +78,23 @@
                 return false;
             }
 
-        function allGenres(songs) {
+        function makeGenres(songs) {
             var  genres  =  [ ] ;
-            for (i = 0; i < songs.length; i++) {
-                currGenres = songs[i].GENRE;
+            for (let index = 0; index < songs.length; index++) {
+                currGenres = songs[index].genre;
 
-                for (let j = 0; j < currGenres.length; j++) {
-                    if (!checkGenre(genres, currGenres[j])) {
-                        genres.push(currGenres[j]);
+                for (let i = 0; i < currGenres.length; i++) {
+                    if (!inGenres(genres, currGenres[i])) {
+                        genres.push(currGenres[i]);
                     }
+                     
                 }
             }
-            return genres;
-        }
+
+                return genres;
+            }
+
+
      	
     </script>
     
