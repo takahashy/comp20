@@ -16,16 +16,14 @@
             $.get( "https://takahashy.github.io/comp20/hw9/songs.json", 
                 function(data) { 
                     var songs = [];
-                    str = JSON.stringify(data)
-                    document.write(str);   
                     
                     for (i = 0; i < data.length; i++) {
                         songs.push(data[i]);
                     }
 
-                    for (i = 0; i < songs.length; i++) {
-//                         $("#print").html(printSongs(data[i]));
-                    }
+                    // for (i = 0; i < songs.length; i++) {
+                    //     $("#print").html(printSongs(data[i]));
+                    // }
                 }
             )     
         })
