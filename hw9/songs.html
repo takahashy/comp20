@@ -80,7 +80,7 @@
         function makeGenres(songs) {
             var  genres  =  [ ] ;
             for (let index = 0; index < songs.length; index++) {
-                currGenres = songs[index].genre;
+                currGenres = songs[index].GENRE;
 
                 for (let i = 0; i < currGenres.length; i++) {
                     if (!inGenres(genres, currGenres[i])) {
