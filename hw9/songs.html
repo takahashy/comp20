@@ -7,29 +7,43 @@
 </head>
 
 <body>
+    <div id="print">hello</div>
+        
+    </script>
+
     <script language="javascript">
         $(document).ready(function () {
             $.get( "https://takahashy.github.io/comp20/hw9/songs.json", 
-                function(songs) {
+                function(data) { 
+                    var songs = [];
+                    str = JSON.stringify(data)
+                    document.write(str);   
+                    
+                    for (i = 0; i < data.length; i++) {
+                        songs.push(data[i]);
+                    }
 
-                    // var songList = JSON.stringify(songs);
-                    // document.write(songList +"<br/><br/>");
-                    listing = "<ul>";
-                    songs.forEach(function(songs) { 
-                        listing += "<li>" 
-                                + songs.TITLE 
-                                + "<br/>Written by: " + songs.ARTIST 
-                                + "<br/>Genres are: " + getGenre(songs)                            
-                                + "<br/>Year Released: " + songs.YEAR
-                                + "</li> <br/>";
-                    }) 
-                    listing += "</ul>";
-                    document.write(listing);
+                    for (i = 0; i < songs.length; i++) {
+                        $("#print").html(printSongs(data[i]));
+                    }
                 }
             )     
         })
 
-        function getGenre(songs) {
+        function printSongs(data) {
+            var songlist = "<ul>";
+            songlist += "<li>" 
+                      + data.TITLE + "<br/>" + "<br/>"
+                      + "Artist: " + data.ARTIST
+                      + "Genres: " + getGenre(data) + "<br/>"
+                      + "Year Released: " + data.YEAR
+                      + "</li>";
+
+            return songlist;
+        }
+
+        function getGenre(songs) 
+        {
                 var genre = "";
                 for (i = 0; i < songs.GENRE.length; i++) {
                     if (i != songs.GENRE.length - 1) {
@@ -43,8 +57,6 @@
             }
      	
     </script>
-
-    <h1>hello world</h1>
     
     <!-- <form>
         Choose a Genre: 
