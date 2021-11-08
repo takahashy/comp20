@@ -1,0 +1,95 @@
+<!-- NOTES API
+    . API stands for Application Programming Interface
+        - request the server for some data
+        - the API fetches the request from the server and returns it back to the user.
+    . AJAX stands for Asynchronous Javascript and XML
+        - can send and retrieve data without loading the entire page
+        - analogy: 
+            user of the webpage: working in an office
+            api and ajax       : fetches necessary information while working in office
+        
+        - request = new XMLHttpRequest();
+          request.open("GET", url, true);
+          request.onreadystatechange = function () {}
+          request.send();
+
+        - readystate variable
+            1 = When AJAX establishes a connection with the server. Hey I got directions to the file.
+            2 = When the server receives the request. Hey I’m at the server.
+            3 = When the request is processed. Hey I’m picking up the file now.
+            4 = When the file is loaded. Here’s your file!
+
+        - status variable
+            200 = when url is loaded correctly
+            404 = when file is missing
+            500 = server had an error
+
+        - responseText variable holds the content of the file
+-->
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dog API</title>
+    </head>
+    
+    <body>
+        <ul>
+            <li><b>Describe the API you selected and what it does:</b><br>
+                The selected API is the internet's biggest collection of open source dog
+                pictures. It returns images of random dogs. </li>
+            <li><b>Cite the website where you found it:</b> <br>
+                <a href="https://dog.ceo/dog-api/" target="_blank">https://dog.ceo/dog-api/</a> </li>
+            <li><b>Describe the options you used for the API request: </b><br>
+                "breeds/image/random" was used to print an image of a dog. Since the api always returns
+                a random dog image it is most likely different every time the page is loaded. </li>
+            <li><b>Give two applications where this API would be helpful:</b><br>
+                One application is for any user that would like to see pictures of different kinds of 
+                dogs maybe for comforting purposes. <br>
+                Second application could be businesses where they need pictures of dogs such as dog groomers,
+                dog trainers, dog walkers, etc.</li>
+        </ul>
+
+        <p id="data"></p>
+
+        <script language="javascript">
+            function printImage(dog) {
+                str = "<img src='" + dog + "'>";
+                return str;
+            }
+
+            /* make an instance of request object */
+            request = new XMLHttpRequest();
+            console.log("1 - request object created");
+
+            /* set the url reuqest to be json file */
+            request.open("GET", "https://dog.ceo/api/breeds/image/random", true);
+            console.log("2 - opened request file");
+
+            /* on readystate conditions */
+            request.onreadystatechange = function () {
+
+                if (request.readyState == 4 && request.status == 200) {
+                    result = request.responseText;
+                    dog = JSON.parse(result);
+                    document.getElementById("data").innerHTML = printImage(dog["message"]);
+                
+                } else if (request.readyState == 4 && request.status != 200) {
+                    document.getElementById("data").innerHTML = "Something is wrong!  Check the logs to see where this went off the rails";
+                
+                } else if (request.readyState == 3) {
+                    document.getElementById("data").innerHTML = "Too soon! Try again";
+                }
+
+            }
+            
+            /* Fire off the HTTP request */
+            request.send();
+            console.log("4 - Request sent");
+        </script>
+    </body>
+</html>
